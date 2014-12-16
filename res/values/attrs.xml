@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 下载进度条 -->
+    <declare-styleable name="DownloadProgressView">
+        <attr name="progressTextColor" format="color" />
+        <attr name="fileTextColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="paddingRight" format="dimension" />
+        <attr name="paddingLeft" format="dimension" />
+        <attr name="max" format="integer" />
+        <attr name="progress" format="integer" />
+        <attr name="progressColor" format="color" />
+        <attr name="progressBottomColor" format="color" />
+        <attr name="progressTopColor" format="color" />
+        <attr name="progressBackgroundColor" format="color" />
+        <attr name="gradientEnable" format="boolean" />
+    </declare-styleable>
+</resources>
