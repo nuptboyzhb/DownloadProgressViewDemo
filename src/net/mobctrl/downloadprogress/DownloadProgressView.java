@@ -145,7 +145,7 @@ public class DownloadProgressView extends View {
 		// 绘制下载的文件大小
 		paint.clearShadowLayer();
 		paint.setTextSize(textSize);
-		paint.setColor(progressTextColor);
+		paint.setColor(fileTextColor);
 		int yCenterPos = (int) ((canvas.getHeight() / 2) - ((paint.descent() + paint
 				.ascent()) / 2));// 计算在Y
 		String fileLengthStr = (progress * maxFileLenght / max) + "Mb/"
@@ -183,7 +183,7 @@ public class DownloadProgressView extends View {
 		startX = right
 				- (int) paint.measureText(progressText, 0,
 						progressText.length());
-		paint.setColor(fileTextColor);
+		paint.setColor(progressTextColor);
 		canvas.drawText(progressText, startX, yCenterPos, paint);
 	}
 
