@@ -36,15 +36,16 @@ public class MainActivity extends Activity implements Runnable {
 
 	@Override
 	public void run() {
-
-		for (int i = 0; i <= 100; i++) {
-			downloadProgressView1.setProgress(i);
-			downloadProgressView2.setProgress(i);
-			downloadProgressView3.setProgress(i);
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		while(true){
+			for (int i = 0; i <= 100; i++) {
+				downloadProgressView1.setProgress(i);
+				downloadProgressView2.setProgress(i);
+				downloadProgressView3.setProgress(i);
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
