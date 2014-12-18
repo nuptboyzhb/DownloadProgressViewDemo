@@ -55,8 +55,8 @@ public class DownloadProgressView extends View {
 	/** 进度条的背景颜色 */
 	private int progressBackgroundColor = 0xffebebeb;
 
-	/** 文件的最大值 */
-	private int maxFileLenght = 25;
+	/** 文件的最大值 KB */
+	private float maxFileLenght = 25 * 1024;
 
 	private int fileTextColor;
 
@@ -148,8 +148,7 @@ public class DownloadProgressView extends View {
 		paint.setColor(fileTextColor);
 		int yCenterPos = (int) ((canvas.getHeight() / 2) - ((paint.descent() + paint
 				.ascent()) / 2));// 计算在Y
-		String fileLengthStr = (progress * maxFileLenght / max) + "Mb/"
-				+ maxFileLenght + "Mb";
+		String fileLengthStr = getDisplayFileLength(progress);
 		int startX = getWidth()
 				- (int) paint.measureText(fileLengthStr, 0,
 						fileLengthStr.length()) - paddingRight;
@@ -161,7 +160,7 @@ public class DownloadProgressView extends View {
 			Shader shader = new LinearGradient(0, 0, 0, height,
 					progressBottomColor, progressTopColor,
 					Shader.TileMode.MIRROR);
-			paint.setShader(shader);
+			paint.setShader(shader);// 设置渐变模式
 		} else {
 			paint.setColor(progressColor);
 		}
@@ -185,6 +184,25 @@ public class DownloadProgressView extends View {
 						progressText.length());
 		paint.setColor(progressTextColor);
 		canvas.drawText(progressText, startX, yCenterPos, paint);
+	}
+
+	private String getDisplayFileLength(int progress2) {
+		float progressSize = progress * maxFileLenght / max;
+		return getDisplayStr(progressSize) + "/" + getDisplayStr(maxFileLenght);
+	}
+
+	private String getDisplayStr(float fileSize) {
+		int mb = (int) (fileSize) / 1024;
+		if (mb == 0) {// 不到1
+			int kb = (int) (fileSize) % 1024;
+			return kb + "Kb";
+		}
+		int kb = (int) (fileSize) % 1024;
+		if (kb != 0) {
+			return mb + "." + (kb / 100) + "Mb";
+		} else {
+			return mb + "Mb";
+		}
 	}
 
 	@Override
@@ -213,14 +231,6 @@ public class DownloadProgressView extends View {
 
 	public void setMax(int max) {
 		this.max = max;
-	}
-
-	public int getMaxFileLenght() {
-		return maxFileLenght;
-	}
-
-	public void setMaxFileLenght(int maxFileLenght) {
-		this.maxFileLenght = maxFileLenght;
 	}
 
 	public int getTextColor() {
@@ -297,6 +307,30 @@ public class DownloadProgressView extends View {
 
 	public int getProgress() {
 		return progress;
+	}
+
+	public int getProgressTextColor() {
+		return progressTextColor;
+	}
+
+	public void setProgressTextColor(int progressTextColor) {
+		this.progressTextColor = progressTextColor;
+	}
+
+	public float getMaxFileLenght() {
+		return maxFileLenght;
+	}
+
+	public void setMaxFileLenght(float maxFileLenght) {
+		this.maxFileLenght = maxFileLenght;
+	}
+
+	public int getFileTextColor() {
+		return fileTextColor;
+	}
+
+	public void setFileTextColor(int fileTextColor) {
+		this.fileTextColor = fileTextColor;
 	}
 
 }

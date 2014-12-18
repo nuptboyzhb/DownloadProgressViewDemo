@@ -21,22 +21,22 @@ public class MainActivity extends Activity implements Runnable {
 		setContentView(R.layout.main);
 		downloadProgressView1 = (DownloadProgressView) findViewById(R.id.wpv_download_1);
 		downloadProgressView1.setMax(100);
-		downloadProgressView1.setMaxFileLenght(20);
+		downloadProgressView1.setMaxFileLenght(20 * 1024);
 
 		downloadProgressView2 = (DownloadProgressView) findViewById(R.id.wpv_download_2);
 		downloadProgressView2.setMax(100);
-		downloadProgressView2.setMaxFileLenght(8);
-		
+		downloadProgressView2.setMaxFileLenght(8.5f * 1024);
+
 		downloadProgressView3 = (DownloadProgressView) findViewById(R.id.wpv_download_3);
 		downloadProgressView3.setMax(100);
-		downloadProgressView3.setMaxFileLenght(19);
+		downloadProgressView3.setMaxFileLenght(19.4f * 1024);
 
 		new Thread(this).start();
 	}
 
 	@Override
 	public void run() {
-		while(true){
+		while (true) {
 			for (int i = 0; i <= 100; i++) {
 				downloadProgressView1.setProgress(i);
 				downloadProgressView2.setProgress(i);
